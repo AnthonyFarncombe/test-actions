@@ -21,7 +21,9 @@ jobs:
         run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
 
       - name: Print branch name
-        run: echo "Branch name is ${{ github.event.ref }}"
+        env:
+          BRANCH_NAME: ${{ env.BRANCH_NAME }}
+        run: echo "Branch name is ${{ env.BRANCH_NAME }}"
 
       - name: Print goodbye
         run: echo "Done - bye!"
