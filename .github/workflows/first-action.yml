@@ -1,10 +1,27 @@
 name: first-action
-on: workflow_dispatch
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - dev
+
 jobs:
   first-job:
     runs-on: ubuntu-latest
     steps:
       - name: Print greeting
         run: echo "Hello World!"
+
+      - name: Get branch name 1
+        run: echo "Branch name is ${{ github.ref }}"
+
+      - name: Get branch name 2
+        run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+
+      - name: Print branch name
+        run: echo "Branch name is ${{ env.BRANCH_NAME }}"
+
       - name: Print goodbye
         run: echo "Done - bye!"
