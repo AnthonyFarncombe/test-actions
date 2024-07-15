@@ -29,6 +29,7 @@ jobs:
         run: echo "Done - bye!"
 
   second-job:
+    needs: first-job
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
